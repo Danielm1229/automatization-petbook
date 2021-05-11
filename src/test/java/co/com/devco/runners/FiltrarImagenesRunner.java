@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-		features = "src/test/resources/features/google_search.feature",
+		features = "src/test/resources/features/filtrar_imagenes.feature",
 		glue = {"co.com.devco.stepdefinitions"},
 		snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class GoogleSearchRunner {
+public class FiltrarImagenesRunner {
 
 }

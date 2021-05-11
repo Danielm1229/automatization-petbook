@@ -1,26 +1,36 @@
 package co.com.devco.stepdefinitions;
 
+import co.com.devco.questions.TodasLasImagenes;
+import co.com.devco.tasks.Filtrar;
+import io.cucumber.java.Before;
 import io.cucumber.java.ast.Cuando;
 import io.cucumber.java.es.Entonces;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
-import static co.com.devco.userinterfaces.GoogleResultadosPage.PRIMER_RESULTADO;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
-public class GoogleSearchStepDefinitions {
+public class FiltrarImagenesStepDefinition {
 
-    @Cuando("^(.*) busca (.*) en Google Search$")
-    public void BuscaEnGoogleSearch(String actor, String palabra) {
+    @Before
+    public void prepareTests() {
+        OnStage.setTheStage(new OnlineCast());
+    }
+
+    @Cuando("^(.*) filtra por (.*) en petbook$")
+    public void usuarioFiltraPorPerroEnPetbook(String actor, String algo) {
         theActorCalled(actor).attemptsTo(
-                BuscarEnGoogle.laPalabra(palabra)
+                Filtrar.por(algo)
         );
     }
 
-    @Entonces("^debe ver como primer resultado (.*)$")
-    public void debeVerComoPrimerResultado(String resultado) {
-        theActorInTheSpotlight().attemptsTo(
-                Ensure.that(PRIMER_RESULTADO).attribute("href").contains(resultado)
-        );
+    @Entonces("^debe ver solo fotos de (.*)")
+    public void debeVerSoloFotosDePerros(String algo) {
+        theActorInTheSpotlight().should(seeThat(
+                TodasLasImagenes.son(algo)
+        ));
     }
 }

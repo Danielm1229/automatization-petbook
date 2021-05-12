@@ -4,7 +4,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class PetbookPage {
-    public static final String PETBOOK_URL = "http://localhost:4200/";
+    public static final String PETBOOK_URL = "http://pet-book-project-circleci.s3-website.us-east-2.amazonaws.com/";
 
 //    public static final Target BOTON_FILTRO_GATO = Target.the("Botón de filtro de gatos")
 //            .located(By.xpath("//button[.=\"Gato\"]"));
